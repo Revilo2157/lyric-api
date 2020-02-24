@@ -8,7 +8,7 @@ module.exports = {
 
 		var lyrics = "";
 
-		url = 'http://lyrics.wikia.com/wiki/' + artist + ':' + song;
+		url = 'https://www.azlyrics.com/lyrics/' + artist + '/' + song + '.html';
 
 
 		request(url, function(error, response, html) {
@@ -21,7 +21,7 @@ module.exports = {
 		        
 		        var $ = cheerio.load(html);
 		        $('script').remove();
-		        var lyrics = ($('.lyricbox').html());
+		        var lyrics = ($(".ringtone").next().next().next().next().html());
 
 				/**
 				 * Override default underscore escape map
