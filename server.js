@@ -44,7 +44,7 @@ router.route('/find/:artist/:song')
 		
 		var lyrics = "";
 
-		url = 'http://lyrics.wikia.com/wiki/' + req.params.artist + ':' + req.params.song;
+		url = url = 'https://www.azlyrics.com/lyrics/' + artist + '/' + song + '.html';
 
 
 		request(url, function(error, response, html) {
@@ -57,7 +57,7 @@ router.route('/find/:artist/:song')
 		        
 		        var $ = cheerio.load(html);
 		        $('script').remove();
-		        var lyrics = ($('.lyricbox').html());
+		        var lyrics = ($(".ringtone").next().next().next().next().html());
 
 				/**
 				 * Override default underscore escape map
