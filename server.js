@@ -56,7 +56,6 @@ router.route('/find/:artist/:song')
 		        var $ = cheerio.load(html);
 		        $('script').remove();
 		        var lyrics = ($(".lyrics").html());
-		        console.log(lyrics);
 				/**
 				 * Override default underscore escape map
 				 */
