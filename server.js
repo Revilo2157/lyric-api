@@ -41,10 +41,9 @@ router.get('/', function(req, res) {
 router.route('/find/:artist/:song')
 
 	.get(function(req,res) {
-		
 		var lyrics = "";
 		const options = {
-			url: 'genius.com/' + req.params.artist + '-' + req.params.song,
+			url: 'https://genius.com/' + req.params.artist + '-' + req.params.song + "-lyrics",
 			headers: {
 				'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 			}
