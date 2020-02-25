@@ -140,19 +140,19 @@ router.route('/find/:artist/:song')
 									 * Override default underscore escape map
 									 */
 									var escapeMap = {
-									  '&': '&amp;',
-									  '<': '&lt;',
-									  '>': '&gt;',
-									  '"': '&quot;',
-									  "'": '&#x27;',
-									  "'": '&#x2019',
-									  "'": '&apos;',
-									  '`': '&#x60;',
-									  "-": '&#x2014;',
-									  '' : '\n',
-									  "-" : '&#x2013;',
-									  ' ': '&#x2005;'
-									};
+										  '&': '&amp;',
+										  '<': '&lt;',
+										  '>': '&gt;',
+										  '"': '&quot;',
+										  "'": '&#x27;',
+										  "'": '&#x2019;',
+										  "'": '&apos;',
+										  '`': '&#x60;',
+										  "-": '&#x2014;',
+										  '' : '\n',
+										  "-" : '&#x2013;',
+										  ' ': '&#x2005;'
+										};
 									var unescapeMap = _.invert(escapeMap);
 									var createEscaper = function(map) {
 									  var escaper = function(match) {
