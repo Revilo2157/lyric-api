@@ -90,11 +90,11 @@ router.route('/find/:artist/:song')
 				};
 				_.escape = createEscaper(escapeMap);
 				_.unescape = createEscaper(unescapeMap);
-
+				console.log(lyrics);
 				// replace html codes with punctuation
 				lyrics = _.unescape(lyrics);
+				console.log(lyrics);
 				// remove everything between brackets
-				lyrics = lyrics.replace('&#x2019;', "'");
 				lyrics = lyrics.replace(/\[[^\]]*\]/g, '');
 				// remove html comments
 				lyrics = lyrics.replace(/(<!--)[^-]*-->/g, '');
@@ -170,10 +170,10 @@ router.route('/find/:artist/:song')
 									};
 									_.escape = createEscaper(escapeMap);
 									_.unescape = createEscaper(unescapeMap);
-
+									console.log(lyrics);
 									// replace html codes with punctuation
-									lyrics = _.unescape(lyrics);
-									lyrics = lyrics.replace('&#x2019;', "'");
+									lyrics = _.unescape(lyrics);				
+									console.log(lyrics);
 									// remove everything between brackets
 									lyrics = lyrics.replace(/\[[^\]]*\]/g, '');
 									// remove html comments
