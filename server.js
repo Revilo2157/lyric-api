@@ -70,6 +70,7 @@ router.route('/find/:artist/:song')
 				  '`': '&#x60;',
 				  "-": '&#x2014;',
 				  '' : '\n',
+				  "-" : '&#x2013',
 				  ' ': '&#x2005;'
 				};
 				var unescapeMap = _.invert(escapeMap);
