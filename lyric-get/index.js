@@ -9,70 +9,69 @@ module.exports = {
 		var lyrics = "";
 
 		url = 'https://www.azlyrics.com/lyrics/' + artist + '/' + song + '.html';
-
-		callback(null, url)
-	// 	request(url, function(error, response, html) {
-	//         if(error)
-	//         {
-	//        		callback(error, null);
-	//         }
-	//         else
-	//         {
+		console.log(url)
+		request(url, function(error, response, html) {
+	        if(error)
+	        {
+	       		callback(error, null);
+	        }
+	        else
+	        {
 		        
-	// 	        var $ = cheerio.load(html);
-	// 	        $('script').remove();
-	// 	        var lyrics = ($(".ringtone").next().next().next().next().html());
+		        var $ = cheerio.load(html);
+		        $('script').remove();
+		        var lyrics = ($(".ringtone").next().next().next().next().html());
 
-	// 			/**
-	// 			 * Override default underscore escape map
-	// 			 */
-	// 			var escapeMap = {
-	// 			  '&': '&amp;',
-	// 			  '<': '&lt;',
-	// 			  '>': '&gt;',
-	// 			  '"': '&quot;',
-	// 			  "'": '&#x27;',
-	// 			  "'": '&apos;',
-	// 			  '`': '&#x60;',
-	// 			  '' : '\n'
-	// 			};
+				/**
+				 * Override default underscore escape map
+				 */
+				var escapeMap = {
+				  '&': '&amp;',
+				  '<': '&lt;',
+				  '>': '&gt;',
+				  '"': '&quot;',
+				  "'": '&#x27;',
+				  "'": '&apos;',
+				  '`': '&#x60;',
+				  '' : '\n'
+				};
 
-	// 			var unescapeMap = _.invert(escapeMap);
-	// 			var createEscaper = function(map) {
-	// 			  var escaper = function(match) {
-	// 			    return map[match];
-	// 			  };
+				var unescapeMap = _.invert(escapeMap);
+				var createEscaper = function(map) {
+				  var escaper = function(match) {
+				    return map[match];
+				  };
 
-	// 			  var source = '(?:' + _.keys(map).join('|') + ')';
-	// 			  var testRegexp = RegExp(source);
-	// 			  var replaceRegexp = RegExp(source, 'g');
-	// 			  return function(string) {
-	// 			    string = string == null ? '' : '' + string;
-	// 			    return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
-	// 			  };
-	// 			};
-	// 			_.escape = createEscaper(escapeMap);
-	// 			_.unescape = createEscaper(unescapeMap);
+				  var source = '(?:' + _.keys(map).join('|') + ')';
+				  var testRegexp = RegExp(source);
+				  var replaceRegexp = RegExp(source, 'g');
+				  return function(string) {
+				    string = string == null ? '' : '' + string;
+				    return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
+				  };
+				};
+				_.escape = createEscaper(escapeMap);
+				_.unescape = createEscaper(unescapeMap);
 
-	// 			// replace html codes with punctuation
-	// 			lyrics = _.unescape(lyrics);
-	// 			// remove everything between brackets
-	// 			lyrics = lyrics.replace(/\[[^\]]*\]/g, '');
-	// 			// remove html comments
-	// 			lyrics = lyrics.replace(/(<!--)[^-]*-->/g, '');
-	// 			// replace newlines
-	// 			lyrics = lyrics.replace(/<br>/g, '\n');
-	// 			// remove all tags
-	// 			lyrics = lyrics.replace(/<[^>]*>/g, '');
+				// replace html codes with punctuation
+				lyrics = _.unescape(lyrics);
+				// remove everything between brackets
+				lyrics = lyrics.replace(/\[[^\]]*\]/g, '');
+				// remove html comments
+				lyrics = lyrics.replace(/(<!--)[^-]*-->/g, '');
+				// replace newlines
+				lyrics = lyrics.replace(/<br>/g, '\n');
+				// remove all tags
+				lyrics = lyrics.replace(/<[^>]*>/g, '');
 
-	// 			//console.log(lyrics);
-	// 	        if(lyrics != ""){
-	// 	        	callback(null, lyrics);
-	// 	        }
-	// 	        else{
-	// 	        	callback("not found", null);
-	// 	        }
-	// 	    }
-	// 	});
+				console.log(lyrics);
+		        if(lyrics != ""){
+		        	callback(null, lyrics);
+		        }
+		        else{
+		        	callback("not found", null);
+		        }
+		    }
+		});
 	}
 }
