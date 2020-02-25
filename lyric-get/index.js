@@ -10,7 +10,7 @@ module.exports = {
 
 		url = 'https://www.azlyrics.com/lyrics/' + artist + '/' + song + '.html';
 
-
+		callback(null, url)
 		request(url, function(error, response, html) {
 	        if(error)
 	        {
