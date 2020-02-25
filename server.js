@@ -108,7 +108,7 @@ router.route('/find/:artist/:song')
 		        else{
 		        	var again = unirest("GET", "https://genius.p.rapidapi.com/search");
 
-					again.query({"q": req.params.tr.split("-")[0] + " " + req.params.artist.replace("-", " ")});
+					again.query({"q": req.params.song.split("-")[0] + " " + req.params.artist.replace("-", " ")});
 
 					again.headers({
 						"x-rapidapi-host": "genius.p.rapidapi.com",
