@@ -56,6 +56,7 @@ router.route('/find/:artist/:song')
 	        {
 		        
 		        var $ = cheerio.load(html);
+		        console.log($)
 		        $('script').remove();
 		        var lyrics = ($(".ringtone").next().next().next().next().html());
 
