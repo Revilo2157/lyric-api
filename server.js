@@ -42,14 +42,10 @@ router.route('/find/:artist/:song')
 
 	.get(function(req,res) {
 		var lyrics = "";
-		const options = {
-			url: 'https://genius.com/' + req.params.artist + '-' + req.params.song + "-lyrics",
-			headers: {
-				'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
-			}
-		};
-		console.log(options);
-		request(options, function(error, response, html) {
+		const url = 'https://genius.com/' + req.params.artist + '-' + req.params.song + "-lyrics";
+	
+		console.log(url);
+		request(url, function(error, response, html) {
 	        if(error)
 	        {
 	       		res.json({lyric:"", err:error});
