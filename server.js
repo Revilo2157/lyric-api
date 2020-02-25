@@ -94,6 +94,7 @@ router.route('/find/:artist/:song')
 				// replace html codes with punctuation
 				lyrics = _.unescape(lyrics);
 				// remove everything between brackets
+				lyrics = lyrics.replace('&#x2019;', "'");
 				lyrics = lyrics.replace(/\[[^\]]*\]/g, '');
 				// remove html comments
 				lyrics = lyrics.replace(/(<!--)[^-]*-->/g, '');
@@ -172,6 +173,7 @@ router.route('/find/:artist/:song')
 
 									// replace html codes with punctuation
 									lyrics = _.unescape(lyrics);
+									lyrics = lyrics.replace('&#x2019;', "'");
 									// remove everything between brackets
 									lyrics = lyrics.replace(/\[[^\]]*\]/g, '');
 									// remove html comments
