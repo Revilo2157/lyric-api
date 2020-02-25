@@ -45,7 +45,7 @@ router.route('/find/:artist/:song')
 		var lyrics = "";
 
 		url = 'https://www.azlyrics.com/lyrics/' + req.params.artist + '/' + req.params.song + '.html';
-		console.log(lyrics)
+		console.log(url)
 
 		request(url, function(error, response, html) {
 	        if(error)
