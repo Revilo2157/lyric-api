@@ -8,18 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "github.com/rhnvrm/lyric-api"
+    "url": "github.com/Revilo2157/lyricsfromoliver"
   },
   "keywords": [
     "lyric",
     "wikia",
     "fetch"
   ],
-  "author": "Rohan Verma",
+  "author": "Oliver Rodas",
   "license": "MIT",
   "dependencies": {
     "cheerio": "^0.20.0",
     "request": "^2.69.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "unirest": "^0.6.0"
   }
 }
