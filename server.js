@@ -68,6 +68,7 @@ router.route('/find/:artist/:song')
 				  "'": '&#x27;',
 				  "'": '&apos;',
 				  '`': '&#x60;',
+				  "-": '&#x2014;',
 				  '' : '\n'
 				};
 				var unescapeMap = _.invert(escapeMap);
