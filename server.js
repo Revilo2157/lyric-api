@@ -44,7 +44,7 @@ router.route('/find/:artist/:song')
 		
 		var lyrics = "";
 		const options = {
-			url: 'https://www.azlyrics.com/lyrics/' + req.params.artist + '/' + req.params.song + '.html',
+			url: 'genius.com' + req.params.artist + '-' + req.params.song,
 			headers: {
 				'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 			}
@@ -61,7 +61,7 @@ router.route('/find/:artist/:song')
 		        var $ = cheerio.load(html);
 		        console.log($.html());
 		        $('script').remove();
-		        var lyrics = ($(".ringtone").next().next().next().next().html());
+		        var lyrics = ($("section").children().html());
 
 				/**
 				 * Override default underscore escape map
@@ -104,7 +104,6 @@ router.route('/find/:artist/:song')
 				// remove all tags
 				lyrics = lyrics.replace(/<[^>]*>/g, '');
 
-				
 		        if(lyrics != ""){
 		        	res.json({lyric:lyrics, err:"none"});
 		        }
