@@ -49,7 +49,7 @@ router.route('/find/:artist/:song')
 				'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1'
 			}
 		};
-
+		console.log(options);
 		request(options, function(error, response, html) {
 	        if(error)
 	        {
@@ -59,7 +59,7 @@ router.route('/find/:artist/:song')
 	        {
 		        
 		        var $ = cheerio.load(html);
-		        console.log($.html())
+		        console.log($.html());
 		        $('script').remove();
 		        var lyrics = ($(".ringtone").next().next().next().next().html());
 
