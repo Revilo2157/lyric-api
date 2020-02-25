@@ -43,11 +43,14 @@ router.route('/find/:artist/:song')
 	.get(function(req,res) {
 		
 		var lyrics = "";
+		const options = {
+			url: 'https://www.azlyrics.com/lyrics/' + req.params.artist + '/' + req.params.song + '.html',
+			headers: {
+				'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1'
+			}
+		};
 
-		url = 'https://www.azlyrics.com/lyrics/' + req.params.artist + '/' + req.params.song + '.html';
-		console.log(url)
-
-		request(url, function(error, response, html) {
+		request(options, function(error, response, html) {
 	        if(error)
 	        {
 	       		res.json({lyric:"", err:error});
