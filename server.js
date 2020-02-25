@@ -45,7 +45,7 @@ router.route('/find/:artist/:song')
 		var lyrics = "";
 
 		url = 'https://www.azlyrics.com/lyrics/' + req.params.artist + '/' + req.params.song + '.html';
-
+		console.log(lyrics)
 
 		request(url, function(error, response, html) {
 	        if(error)
@@ -100,7 +100,7 @@ router.route('/find/:artist/:song')
 				// remove all tags
 				lyrics = lyrics.replace(/<[^>]*>/g, '');
 
-				console.log(lyrics)
+				
 		        if(lyrics != ""){
 		        	res.json({lyric:lyrics, err:"none"});
 		        }
