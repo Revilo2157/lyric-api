@@ -46,7 +46,7 @@ router.route('/find/:artist/:song')
 		const options = {
 			url: 'https://www.azlyrics.com/lyrics/' + req.params.artist + '/' + req.params.song + '.html',
 			headers: {
-				'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1'
+				'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 			}
 		};
 		console.log(options);
