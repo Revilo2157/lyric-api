@@ -8,8 +8,12 @@ module.exports = {
 
 		var lyrics = "";
 
-		url = 'https://www.azlyrics.com/lyrics/' + artist + '/' + song + '.html';
-		console.log(url)
+		const options = {
+			url: 'https://www.azlyrics.com/lyrics/' + req.params.artist + '/' + req.params.song + '.html',
+			headers: {
+				'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+			}
+		};
 		request(url, function(error, response, html) {
 	        if(error)
 	        {
