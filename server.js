@@ -100,7 +100,7 @@ router.route('/find/:artist/:song')
 				// remove all tags
 				lyrics = lyrics.replace(/<[^>]*>/g, '');
 
-
+				console.log(lyrics)
 		        if(lyrics != ""){
 		        	res.json({lyric:lyrics, err:"none"});
 		        }
