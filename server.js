@@ -93,6 +93,8 @@ router.route('/find/:artist/:song')
 				// // replace html codes with punctuation
 				//lyrics = _.unescape(lyrics);
 				// remove everything between brackets
+				if(lyrics == null)
+					lyrics = "";
 				lyrics = lyrics.replace(/\[[^\]]*\]/g, '');
 				// remove html comments
 				lyrics = lyrics.replace(/(<!--)[^-]*-->/g, '');
@@ -136,7 +138,9 @@ router.route('/find/:artist/:song')
 						        {
 							        var $ = cheerio.load(html, {decodeEntities: false});
 							        $('script').remove();
-							        var lyrics = ($(".lyrics").html());
+							        lyrics = ($(".lyrics").html());
+							        if(lyrics == null)
+										lyrics = "";
 									/**
 									 * Override default underscore escape map
 									 */

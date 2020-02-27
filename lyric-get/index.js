@@ -8,7 +8,7 @@ module.exports = {
 	get: function(artist, song, res) {
 		var lyrics = "";
 		const url = 'https://genius.com/' + artist + '-' + song + "-lyrics";
-		console.log("Made it here");
+		console.log(url);
 		request(url, function(error, response, html) {
 	        if(error)
 	        {
@@ -17,25 +17,33 @@ module.exports = {
 	        else
 	        {
 		        var $ = cheerio.load(html, {decodeEntities: false});
+		        console.log($(".lyrics").html());
 		        $('script').remove();
 		        var lyrics = ($(".lyrics").html());
+				/**
+				 * Override default underscore escape map
+				 */
+				 if(lyrics == null)
+				 	lyrics = "";
+				// replace html codes with punctuation
+				console.log("Lyrics are" + lyrics);
 				// remove everything between brackets
+				lyrics = lyrics.replace(/&#x2019;/, "'");
 				lyrics = lyrics.replace(/\[[^\]]*\]/g, '');
 				// remove html comments
 				lyrics = lyrics.replace(/(<!--)[^-]*-->/g, '');
 				// replace newlines
-				//lyrics = lyrics.replace(/<br>/g, ' ');
+				lyrics = lyrics.replace(/<br>/g, '\n');
 				// remove all tags
 				lyrics = lyrics.replace(/<[^>]*>/g, '');
-				lyrics.replace("\n\n", "\n");
-				console.log(lyrics);
+
 		        if(lyrics != ""){
 		        	res = {lyric:lyrics, err:"none"};
 		        }
 		        else{
 		        	var again = unirest("GET", "https://genius.p.rapidapi.com/search");
 
-					again.query({"q": req.params.song.split("-")[0] + " " + req.params.artist.replace("-", " ")});
+					again.query({"q": song.split("-")[0] + " " + artist.replace("-", " ")});
 
 					again.headers({
 						"x-rapidapi-host": "genius.p.rapidapi.com",
