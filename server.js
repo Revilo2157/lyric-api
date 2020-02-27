@@ -40,6 +40,10 @@ router.get('/', function(req, res) {
 
 // more routes for our API will happen here
 
+router.route('/ping', function(req, res) {
+	res.json({message: 'Online and Ready', err:null});
+});
+
 router.route('/find/:artist/:song')
 
 	.get(function(req,res) {
