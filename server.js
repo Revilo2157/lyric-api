@@ -111,7 +111,13 @@ router.route('/find/:artist/:song')
 		        else{
 		        	var again = unirest("GET", "https://genius.p.rapidapi.com/search");
 
-					again.query({"q": req.params.song.split("-")[0] + " " + req.params.artist.replace("-", " ")});
+		        	var search = req.params.song.split("-");
+		        	if(search.length > 1) {
+		        		var songSearch = [search[0], search[1]].join(" ");
+		        	} else {
+		        		var songSearch = search[0];
+		        	}
+					again.query({"q": songSearch + " " + req.params.artist.replace("-", " ")});
 
 					again.headers({
 						"x-rapidapi-host": "genius.p.rapidapi.com",
@@ -124,7 +130,6 @@ router.route('/find/:artist/:song')
 						}
 						else 
 						{
-
 							let path = res2.body["response"]["hits"][0]["result"]["path"];
 
 							const url2 = 'https://genius.com' + path;
