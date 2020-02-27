@@ -54,46 +54,45 @@ router.route('/find/:artist/:song')
 	        else
 	        {
 		        
-		        var $ = cheerio.load(html);
+		        var $ = cheerio.load(html, {decodeEntities: false});
 		        $('script').remove();
 		        var lyrics = ($(".lyrics").html());
 				/**
 				 * Override default underscore escape map
 				 */
-				var escapeMap = {
-				  '&': '&amp;',
-				  '<': '&lt;',
-				  '>': '&gt;',
-				  '"': '&quot;',
-				  "'": '&#x27;',
-				  "'": '&#x2019;',
-				  "'": '&apos;',
-				  '`': '&#x60;',
-				  "-": '&#x2014;',
-				  '' : '\n',
-				  "-" : '&#x2013;',
-				  ' ': '&#x2005;'
-				};
-				var unescapeMap = _.invert(escapeMap);
-				var createEscaper = function(map) {
-				  var escaper = function(match) {
-				    return map[match];
-				  };
+				// var escapeMap = {
+				//   '&': '&amp;',
+				//   '<': '&lt;',
+				//   '>': '&gt;',
+				//   '"': '&quot;',
+				//   "'": '&#x27;',
+				//   "'": '&#x2019;',
+				//   "'": '&apos;',
+				//   '`': '&#x60;',
+				//   "-": '&#x2014;',
+				//   '' : '\n',
+				//   "-" : '&#x2013;',
+				//   ' ': '&#x2005;'
+				// };
+				// var unescapeMap = _.invert(escapeMap);
+				// var createEscaper = function(map) {
+				//   var escaper = function(match) {
+				//     return map[match];
+				//   };
 
-				  var source = '(?:' + _.keys(map).join('|') + ')';
-				  var testRegexp = RegExp(source);
-				  var replaceRegexp = RegExp(source, 'g');
-				  return function(string) {
-				    string = string == null ? '' : '' + string;
-				    return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
-				  };
-				};
-				_.escape = createEscaper(escapeMap);
-				_.unescape = createEscaper(unescapeMap);
-				// replace html codes with punctuation
+				//   var source = '(?:' + _.keys(map).join('|') + ')';
+				//   var testRegexp = RegExp(source);
+				//   var replaceRegexp = RegExp(source, 'g');
+				//   return function(string) {
+				//     string = string == null ? '' : '' + string;
+				//     return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
+				//   };
+				// };
+				// _.escape = createEscaper(escapeMap);
+				// _.unescape = createEscaper(unescapeMap);
+				// // replace html codes with punctuation
 				lyrics = _.unescape(lyrics);
 				// remove everything between brackets
-				lyrics = lyrics.replace(/&#x2019;/, "'");
 				lyrics = lyrics.replace(/\[[^\]]*\]/g, '');
 				// remove html comments
 				lyrics = lyrics.replace(/(<!--)[^-]*-->/g, '');
@@ -133,45 +132,44 @@ router.route('/find/:artist/:song')
 						        }
 						        else
 						        {
-							        var $ = cheerio.load(html);
+							        var $ = cheerio.load(html, {decodeEntities: false});
 							        $('script').remove();
 							        var lyrics = ($(".lyrics").html());
 									/**
 									 * Override default underscore escape map
 									 */
-									var escapeMap = {
-										  '&': '&amp;',
-										  '<': '&lt;',
-										  '>': '&gt;',
-										  '"': '&quot;',
-										  "'": '&#x27;',
-										  "'": '&#x2019;',
-										  "'": '&apos;',
-										  '`': '&#x60;',
-										  "-": '&#x2014;',
-										  '' : '\n',
-										  "-" : '&#x2013;',
-										  ' ': '&#x2005;'
-										};
-									var unescapeMap = _.invert(escapeMap);
-									var createEscaper = function(map) {
-									  var escaper = function(match) {
-									    return map[match];
-									  };
+									// var escapeMap = {
+									// 	  '&': '&amp;',
+									// 	  '<': '&lt;',
+									// 	  '>': '&gt;',
+									// 	  '"': '&quot;',
+									// 	  "'": '&#x27;',
+									// 	  "'": '&#x2019;',
+									// 	  "'": '&apos;',
+									// 	  '`': '&#x60;',
+									// 	  "-": '&#x2014;',
+									// 	  '' : '\n',
+									// 	  "-" : '&#x2013;',
+									// 	  ' ': '&#x2005;'
+									// 	};
+									// var unescapeMap = _.invert(escapeMap);
+									// var createEscaper = function(map) {
+									//   var escaper = function(match) {
+									//     return map[match];
+									//   };
 
-									  var source = '(?:' + _.keys(map).join('|') + ')';
-									  var testRegexp = RegExp(source);
-									  var replaceRegexp = RegExp(source, 'g');
-									  return function(string) {
-									    string = string == null ? '' : '' + string;
-									    return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
-									  };
-									};
-									_.escape = createEscaper(escapeMap);
-									_.unescape = createEscaper(unescapeMap);
+									//   var source = '(?:' + _.keys(map).join('|') + ')';
+									//   var testRegexp = RegExp(source);
+									//   var replaceRegexp = RegExp(source, 'g');
+									//   return function(string) {
+									//     string = string == null ? '' : '' + string;
+									//     return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
+									//   };
+									// };
+									// _.escape = createEscaper(escapeMap);
+									// _.unescape = createEscaper(unescapeMap);
 									// replace html codes with punctuation
-									lyrics = _.unescape(lyrics);				
-									lyrics = lyrics.replace(/&#x2019;/, "'");
+									//lyrics = _.unescape(lyrics);				
 									// remove everything between brackets
 									lyrics = lyrics.replace(/\[[^\]]*\]/g, '');
 									// remove html comments
@@ -180,7 +178,6 @@ router.route('/find/:artist/:song')
 									lyrics = lyrics.replace(/<br>/g, '\n');
 									// remove all tags
 									lyrics = lyrics.replace(/<[^>]*>/g, '');
-									lyrics = lyrics.replace("&#x2019;", "'");
 							        if(lyrics != ""){
 							        	res.json({lyric:lyrics, err:"none"});
 							        } else {
