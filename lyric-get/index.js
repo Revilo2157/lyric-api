@@ -19,14 +19,12 @@ module.exports = {
 		        var $ = cheerio.load(html, {decodeEntities: false});
 		        $('script').remove();
 		        var lyrics = ($(".lyrics").html());
-
-				lyrics = _.unescape(lyrics);
 				// remove everything between brackets
 				lyrics = lyrics.replace(/\[[^\]]*\]/g, '');
 				// remove html comments
 				lyrics = lyrics.replace(/(<!--)[^-]*-->/g, '');
 				// replace newlines
-				lyrics = lyrics.replace(/<br>/g, '\n');
+				//lyrics = lyrics.replace(/<br>/g, ' ');
 				// remove all tags
 				lyrics = lyrics.replace(/<[^>]*>/g, '');
 				console.log(lyrics);

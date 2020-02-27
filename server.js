@@ -97,7 +97,7 @@ router.route('/find/:artist/:song')
 				// remove html comments
 				lyrics = lyrics.replace(/(<!--)[^-]*-->/g, '');
 				// replace newlines
-				lyrics = lyrics.replace(/<br>/g, '\n');
+				//lyrics = lyrics.replace(/<br>/g, '\n');
 				// remove all tags
 				lyrics = lyrics.replace(/<[^>]*>/g, '');
 
