@@ -91,7 +91,7 @@ router.route('/find/:artist/:song')
 				// _.escape = createEscaper(escapeMap);
 				// _.unescape = createEscaper(unescapeMap);
 				// // replace html codes with punctuation
-				lyrics = _.unescape(lyrics);
+				//lyrics = _.unescape(lyrics);
 				// remove everything between brackets
 				lyrics = lyrics.replace(/\[[^\]]*\]/g, '');
 				// remove html comments
@@ -177,9 +177,13 @@ router.route('/find/:artist/:song')
 									// remove html comments
 									lyrics = lyrics.replace(/(<!--)[^-]*-->/g, '');
 									// replace newlines
-									lyrics = lyrics.replace(/<br>/g, '\n');
+
 									// remove all tags
 									lyrics = lyrics.replace(/<[^>]*>/g, '');
+									lyrics = lyrics.replace(/<[^>]*>/g, '');
+									lyrics = lyrics.replace(/[\n]{2}/g, "\n");
+									lyrics = lyrics.replace([/[\n]{3, }/g], "\n\n");
+									lyrics = lyrics.replace(/^[ ?\n?]+|[ ?\n?]+$/g, "");
 							        if(lyrics != ""){
 							        	res.json({lyric:lyrics, err:"none"});
 							        } else {
