@@ -27,6 +27,7 @@ module.exports = {
 				//lyrics = lyrics.replace(/<br>/g, ' ');
 				// remove all tags
 				lyrics = lyrics.replace(/<[^>]*>/g, '');
+				lyrics.replace("\n\n", "\n");
 				console.log(lyrics);
 		        if(lyrics != ""){
 		        	res = {lyric:lyrics, err:"none"};
